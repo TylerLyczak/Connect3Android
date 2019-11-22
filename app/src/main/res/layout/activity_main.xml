@@ -31,7 +31,7 @@
             android:layout_height="100dp"
             android:layout_marginTop="110dp"
             android:onClick="onGamePieceClick"
-            android:tag='""'
+            android:tag=""
             app:layout_column="0"
             app:layout_row="0" />
 
@@ -42,7 +42,7 @@
             android:layout_marginLeft="123dp"
             android:layout_marginTop="110dp"
             android:onClick="onGamePieceClick"
-            android:tag='""'
+            android:tag=""
             app:layout_column="0"
             app:layout_row="0" />
 
@@ -53,7 +53,7 @@
             android:layout_marginLeft="237dp"
             android:layout_marginTop="110dp"
             android:onClick="onGamePieceClick"
-            android:tag='""'
+            android:tag=""
             app:layout_column="0"
             app:layout_row="0" />
 
@@ -63,7 +63,7 @@
             android:layout_height="100dp"
             android:layout_marginTop="230dp"
             android:onClick="onGamePieceClick"
-            android:tag='""'
+            android:tag=""
             app:layout_column="0"
             app:layout_row="0" />
 
@@ -74,7 +74,7 @@
             android:layout_marginLeft="123dp"
             android:layout_marginTop="230dp"
             android:onClick="onGamePieceClick"
-            android:tag='""'
+            android:tag=""
             app:layout_column="0"
             app:layout_row="0" />
 
@@ -85,7 +85,7 @@
             android:layout_marginLeft="237dp"
             android:layout_marginTop="230dp"
             android:onClick="onGamePieceClick"
-            android:tag='""'
+            android:tag=""
             app:layout_column="0"
             app:layout_row="0" />
 
@@ -95,7 +95,7 @@
             android:layout_height="100dp"
             android:layout_marginTop="355dp"
             android:onClick="onGamePieceClick"
-            android:tag='""'
+            android:tag=""
             app:layout_column="0"
             app:layout_row="0" />
 
@@ -106,7 +106,7 @@
             android:layout_marginLeft="123dp"
             android:layout_marginTop="355dp"
             android:onClick="onGamePieceClick"
-            android:tag='""'
+            android:tag=""
             app:layout_column="0"
             app:layout_row="0" />
 
@@ -117,7 +117,7 @@
             android:layout_marginLeft="237dp"
             android:layout_marginTop="355dp"
             android:onClick="onGamePieceClick"
-            android:tag='""'
+            android:tag=""
             app:layout_column="0"
             app:layout_row="0" />
     </androidx.gridlayout.widget.GridLayout>
@@ -130,18 +130,19 @@
         android:layout_marginBottom="17dp"
         android:text="Click Any Square To Start, Red Goes First!"
         android:textSize="18sp"
-        app:layout_constraintBottom_toTopOf="@+id/button4"
+        app:layout_constraintBottom_toTopOf="@+id/playAgain"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
     <Button
-        android:id="@+id/button4"
+        android:id="@+id/playAgain"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="32dp"
         android:layout_marginBottom="47dp"
+        android:onClick="onPlayAgain"
         android:text="PLAY AGAIN"
         android:visibility="invisible"
         app:layout_constraintBottom_toTopOf="@+id/gridLayout"
