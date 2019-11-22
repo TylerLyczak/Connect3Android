@@ -6,6 +6,8 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.ImageView;
+import android.widget.TextView;
+import android.widget.Toast;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -15,7 +17,31 @@ public class MainActivity extends AppCompatActivity {
 
         ImageView imageView = (ImageView)view;
 
-        //Log.i("Piece: ", String.valueOf(imageView.getId()));
+        if ((String.valueOf(imageView.getTag()) == "Red") || (String.valueOf(imageView.getTag()) == "Yellow"))  {
+            Toast.makeText(this, "Piece Already Selected", Toast.LENGTH_SHORT).show();
+            return;
+        }
+
+        // Red players turn
+        if (whichTurn == 0) {
+            imageView.setImageResource(R.drawable.red);
+            imageView.setTag("Red");
+
+            TextView textView = (TextView)findViewById(R.id.titleText);
+            textView.setText("Yellow's Turn");
+
+            whichTurn++;
+        }
+        // Yellow Turn
+        else    {
+            imageView.setImageResource(R.drawable.yellow);
+            imageView.setTag("Yellow");
+
+            TextView textView = (TextView)findViewById(R.id.titleText);
+            textView.setText("Red's Turn");
+
+            whichTurn = 0;
+        }
     }
 
     @Override
