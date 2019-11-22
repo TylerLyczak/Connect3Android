@@ -18,6 +18,8 @@ public class MainActivity extends AppCompatActivity {
     int whichTurn = 0;
     // Boolean to track if there is a winner
     boolean isWin = false;
+    // Stores the color that won
+    String winner = "";
 
     public void onPlayAgain (View view) {
 
@@ -66,6 +68,7 @@ public class MainActivity extends AppCompatActivity {
 
 
         // Resets some variables and text, makes button invisible again
+        winner = "";
         whichTurn = 0;
         TextView textView = (TextView)findViewById(R.id.titleText);
         textView.setText("Click Any Square To Start, Red Goes First!");
@@ -74,7 +77,7 @@ public class MainActivity extends AppCompatActivity {
         isWin = false;
     }
 
-    public boolean checkBoard (String winner)    {
+    public boolean checkBoard ()    {
 
         // Gets all the tags and puts them into strings
         String sp1 = (String.valueOf(findViewById(R.id.gamePiece1).getTag()));
@@ -175,13 +178,14 @@ public class MainActivity extends AppCompatActivity {
             whichTurn = 0;
         }
 
-        String winner = "";
-
         // Runs a function to check over the board to see if someone won
-        isWin = checkBoard(winner);
+        isWin = checkBoard();
         if (isWin) {
             String winnerText = winner+" WON!";
             Toast.makeText(this, winnerText, Toast.LENGTH_SHORT).show();
+
+            TextView textView = (TextView)findViewById(R.id.titleText);
+            textView.setText(winnerText);
 
             Button playAgain = (Button)findViewById(R.id.playAgain);
             playAgain.setVisibility(View.VISIBLE);
