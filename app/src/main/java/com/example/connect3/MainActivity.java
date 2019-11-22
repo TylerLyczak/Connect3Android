@@ -14,7 +14,10 @@ import java.util.ArrayList;
 
 public class MainActivity extends AppCompatActivity {
 
+    // Keeps track of which turn it is
     int whichTurn = 0;
+    // Boolean to track if there is a winner
+    boolean isWin = false;
 
     public void onPlayAgain (View view) {
 
@@ -68,10 +71,12 @@ public class MainActivity extends AppCompatActivity {
         textView.setText("Click Any Square To Start, Red Goes First!");
 
         playAgain.setVisibility(View.INVISIBLE);
+        isWin = false;
     }
 
     public boolean checkBoard (String winner)    {
 
+        // Gets all the tags and puts them into strings
         String sp1 = (String.valueOf(findViewById(R.id.gamePiece1).getTag()));
         String sp2 = (String.valueOf(findViewById(R.id.gamePiece2).getTag()));
         String sp3 = (String.valueOf(findViewById(R.id.gamePiece3).getTag()));
@@ -83,6 +88,7 @@ public class MainActivity extends AppCompatActivity {
         String sp9 = (String.valueOf(findViewById(R.id.gamePiece9).getTag()));
 
 
+        // Runs through every win scenario to see if a user won
         // Top row win
         if ((sp1.equals(sp2)) && (sp2.equals(sp3)) && (!"".equals(sp1)))  {
             winner = sp1;
@@ -130,8 +136,15 @@ public class MainActivity extends AppCompatActivity {
 
     public void onGamePieceClick (View view)    {
 
+        if (isWin)  {
+            Toast.makeText(this, "Game is finish, please reset", Toast.LENGTH_SHORT).show();
+            return;
+        }
+
+        // Gets the image of which the user clicked on
         ImageView imageView = (ImageView)view;
 
+        // If the image is already filled, it will deny the user from changing it
         if ((String.valueOf(imageView.getTag()).equals("Red")) || (String.valueOf(imageView.getTag()).equals("Yellow")))  {
             Toast.makeText(this, "Piece Already Selected", Toast.LENGTH_SHORT).show();
             return;
@@ -139,9 +152,11 @@ public class MainActivity extends AppCompatActivity {
 
         // Red players turn
         if (whichTurn == 0) {
+            // Changes the image to the red piece and resets its tag
             imageView.setImageResource(R.drawable.red);
             imageView.setTag("Red");
 
+            // Changes the text to say yellows turn
             TextView textView = (TextView)findViewById(R.id.titleText);
             textView.setText("Yellow's Turn");
 
@@ -149,9 +164,11 @@ public class MainActivity extends AppCompatActivity {
         }
         // Yellow Turn
         else    {
+            // Changes the image to the yellow piece and resets its tag
             imageView.setImageResource(R.drawable.yellow);
             imageView.setTag("Yellow");
 
+            // Changes the text to say Reds turn
             TextView textView = (TextView)findViewById(R.id.titleText);
             textView.setText("Red's Turn");
 
@@ -160,7 +177,9 @@ public class MainActivity extends AppCompatActivity {
 
         String winner = "";
 
-        if (checkBoard(winner)) {
+        // Runs a function to check over the board to see if someone won
+        isWin = checkBoard(winner);
+        if (isWin) {
             String winnerText = winner+" WON!";
             Toast.makeText(this, winnerText, Toast.LENGTH_SHORT).show();
 
