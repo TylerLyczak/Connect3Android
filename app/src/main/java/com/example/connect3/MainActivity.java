@@ -18,6 +18,8 @@ public class MainActivity extends AppCompatActivity {
     int whichTurn = 0;
     // Boolean to track if there is a winner
     boolean isWin = false;
+    // Boolean to track if there is a draw
+    boolean isDraw = false;
     // Stores the color that won
     String winner = "";
 
@@ -75,6 +77,7 @@ public class MainActivity extends AppCompatActivity {
 
         playAgain.setVisibility(View.INVISIBLE);
         isWin = false;
+        isDraw = false;
     }
 
     public boolean checkBoard ()    {
@@ -132,6 +135,12 @@ public class MainActivity extends AppCompatActivity {
             winner = sp3;
             return true;
         }
+        // Checks for a draw
+        else if ( (!"".equals(sp1)) && (!"".equals(sp2)) && (!"".equals(sp3)) && (!"".equals(sp4)
+                && (!"".equals(sp5)) && (!"".equals(sp6)) && (!"".equals(sp7)) && (!"".equals(sp8)) && (!"".equals(sp9))))   {
+            isDraw = true;
+            return false;
+        }
         else    {
             return false;
         }
@@ -186,6 +195,16 @@ public class MainActivity extends AppCompatActivity {
 
             TextView textView = (TextView)findViewById(R.id.titleText);
             textView.setText(winnerText);
+
+            Button playAgain = (Button)findViewById(R.id.playAgain);
+            playAgain.setVisibility(View.VISIBLE);
+        }
+        else if (isDraw)    {
+            String drawText = "DRAW!";
+            Toast.makeText(this, drawText, Toast.LENGTH_SHORT).show();
+
+            TextView textView = (TextView)findViewById(R.id.titleText);
+            textView.setText(drawText);
 
             Button playAgain = (Button)findViewById(R.id.playAgain);
             playAgain.setVisibility(View.VISIBLE);
